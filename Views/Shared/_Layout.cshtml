@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartExpenseTracker</title>
+
+    <script type="importmap"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SmartExpenseTracker.styles.css" asp-append-version="true" />
+
+    <style>
+
+:root {
+    --void:        #03040a;
+    --space:       #080c18;
+    --deep:        #0d1224;
+    --panel:       #111827;
+    --surface:     #161e30;
+    --rim:         rgba(255,255,255,.06);
+    --rim-bright:  rgba(255,255,255,.13);
+    --rim-active:  rgba(255,255,255,.22);
+
+    --plasma:      #4f8eff;
+    --aurora:      #00e5c4;
+    --neon:        #b06cff;
+    --flare:       #ff6b6b;
+    --gold:        #ffc86b;
+
+    --glow-plasma: 0 0 30px rgba(79,142,255,.45), 0 0 60px rgba(79,142,255,.18);
+    --glow-aurora: 0 0 30px rgba(0,229,196,.45), 0 0 60px rgba(0,229,196,.18);
+    --glow-neon:   0 0 30px rgba(176,108,255,.45), 0 0 60px rgba(176,108,255,.18);
+
+    --text-primary:   #eef1fb;
+    --text-secondary: rgba(180,192,224,.75);
+    --text-muted:     rgba(140,158,200,.5);
+
+    --radius-sm:   8px;
+    --radius-md:   14px;
+    --radius-lg:   22px;
+    --radius-xl:   32px;
+
+    --ease-bounce: cubic-bezier(.34,1.56,.64,1);
+    --ease-out:    cubic-bezier(.2,.8,.2,1);
+    --ease-spring: cubic-bezier(.43,1.08,.81,1);
+
+    --nav-h: 68px;
+}
+
+*, *::before, *::after {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--void);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.bg-cosmos {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-cosmos::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 10% 15%,  rgba(79,142,255,.13) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 20%,  rgba(176,108,255,.10) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 70% at 50% 90%,  rgba(0,229,196,.08)  0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 75% 65%,  rgba(255,107,107,.06) 0%, transparent 45%),
+        linear-gradient(165deg, #03040a 0%, #080c18 40%, #0a0e1e 100%);
+}
+
+.bg-cosmos::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 15%  8%,  rgba(255,255,255,.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28%  22%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 42%  5%,  rgba(255,255,255,.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55%  18%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68%  9%,  rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80%  25%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92%  12%, rgba(255,255,255,.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 7%  35%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22%  48%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 38%  38%, rgba(255,255,255,.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 62%  45%, rgba(255,255,255,.4)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 73% 32%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 87%  55%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5%   62%, rgba(255,255,255,.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 33%  70%, rgba(255,255,255,.3)  0%, transparent 100%),
+        radial-gradient(1px 1px at 50%  75%, rgba(255,255,255,.5)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 78% 68%, rgba(255,255,255,.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 93%  78%, rgba(255,255,255,.35) 0%, transparent 100%);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .35;
+    animation: orb-drift var(--t, 20s) ease-in-out infinite alternate;
+    transform-style: preserve-3d;
+}
+
+.orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(79,142,255,.6), transparent 70%);
+    top: -120px; left: -80px;
+    --t: 22s;
+}
+
+.orb-2 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(176,108,255,.5), transparent 70%);
+    top: 10%; right: -100px;
+    --t: 28s;
+    animation-direction: alternate-reverse;
+}
+
+.orb-3 {
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(0,229,196,.45), transparent 70%);
+    bottom: 15%; left: 20%;
+    --t: 18s;
+}
+
+.orb-4 {
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,200,107,.3), transparent 70%);
+    bottom: 5%; right: 15%;
+    --t: 25s;
+    animation-direction: alternate-reverse;
+}
+
+@@keyframes orb-drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(40px, -30px) scale(1.08); }
+    66%  { transform: translate(-20px, 25px) scale(.94); }
+    100% { transform: translate(30px, -10px) scale(1.04); }
+}
+
+.grid-mesh {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .028;
+    background-image:
+        linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+.navbar {
+    height: var(--nav-h);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(8,12,24,.78) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+    border-bottom: 1px solid var(--rim);
+    box-shadow:
+        0 1px 0 var(--rim),
+        0 4px 40px rgba(0,0,0,.55);
+
+    padding: 0 !important;
+    transition: background .4s var(--ease-out),
+                box-shadow .4s var(--ease-out);
+}
+
+.navbar.scrolled {
+    background: rgba(5,8,18,.9) !important;
+    box-shadow:
+        0 1px 0 var(--rim-bright),
+        0 8px 60px rgba(0,0,0,.7),
+        0 0 80px rgba(79,142,255,.06);
+}
+
+.navbar-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -.02em;
+    color: var(--text-primary) !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform .3s var(--ease-bounce);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.04);
+}
+
+.brand-icon {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--plasma), var(--neon));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: var(--glow-plasma);
+    flex-shrink: 0;
+    transition: box-shadow .35s var(--ease-out), transform .35s var(--ease-bounce);
+}
+
+.navbar-brand:hover .brand-icon {
+    box-shadow: var(--glow-neon);
+    transform: rotate(-8deg) scale(1.1);
+}
+
+.brand-text {
+    background: linear-gradient(95deg, #fff 30%, var(--plasma) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar-nav { gap: 2px; }
+
+.nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: .875rem;
+    color: var(--text-secondary) !important;
+    padding: 8px 16px !important;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    letter-spacing: .01em;
+    position: relative;
+    transition:
+        color .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        transform .3s var(--ease-bounce);
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(79,142,255,.12), rgba(176,108,255,.08));
+    opacity: 0;
+    transition: opacity .25s ease;
+    border-radius: inherit;
+}
+
+.nav-link:hover::before { opacity: 1; }
+
+.nav-link:hover {
+    color: #fff !important;
+    border-color: var(--rim-bright);
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 50%;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--plasma), var(--aurora));
+    transform: translateX(-50%);
+    border-radius: 99px;
+    transition: width .3s var(--ease-out);
+}
+
+.nav-link:hover::after { width: 50%; }
+
+.btn-glass {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: .875rem;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--rim-bright);
+    background: rgba(255,255,255,.06);
+    color: var(--text-primary) !important;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .3s var(--ease-bounce),
+        box-shadow .3s ease;
+}
+
+.btn-glass::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+    transform: translateX(-100%) rotate(25deg);
+    transition: transform .5s ease;
+}
+
+.btn-glass:hover::before { transform: translateX(60%) rotate(25deg); }
+
+.btn-glass:hover {
+    background: rgba(255,255,255,.11);
+    border-color: var(--rim-active);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+
+.btn-plasma {
+    background: linear-gradient(135deg, var(--plasma), var(--neon));
+    border: none;
+    box-shadow: 0 4px 20px rgba(79,142,255,.3);
+    color: #fff !important;
+}
+
+.btn-plasma:hover {
+    box-shadow: 0 8px 35px rgba(79,142,255,.55), 0 0 60px rgba(176,108,255,.2);
+    background: linear-gradient(135deg, #6ba3ff, #c280ff);
+}
+
+.btn-ghost-danger {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: .875rem;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,107,107,.2);
+    background: rgba(255,107,107,.06);
+    color: rgba(255,150,150,.85) !important;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .3s var(--ease-bounce);
+}
+
+.btn-ghost-danger:hover {
+    background: rgba(255,107,107,.14);
+    border-color: rgba(255,107,107,.4);
+    color: #ff9696 !important;
+    transform: translateY(-2px);
+}
+
+.nav-auth { display: flex; align-items: center; gap: 8px; }
+
+.navbar-toggler {
+    border: 1px solid var(--rim-bright) !important;
+    border-radius: var(--radius-sm) !important;
+    background: rgba(255,255,255,.05) !important;
+    padding: 6px 10px !important;
+    transition: background .25s ease, transform .3s var(--ease-bounce);
+}
+
+.navbar-toggler:hover {
+    background: rgba(255,255,255,.1) !important;
+    transform: scale(1.05);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28160,180,230,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+@@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 12px;
+        padding: 16px;
+        border-radius: var(--radius-lg);
+        background: rgba(8,12,24,.95);
+        border: 1px solid var(--rim-bright);
+        backdrop-filter: blur(24px);
+    }
+
+    .navbar-nav { gap: 4px; }
+
+    .nav-link {
+        display: block;
+        text-align: left !important;
+        padding: 12px 16px !important;
+    }
+
+    .nav-auth {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 8px;
+        padding-top: 12px;
+        border-top: 1px solid var(--rim);
+        gap: 8px;
+    }
+
+    .btn-glass, .btn-plasma, .btn-ghost-danger {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.page-wrapper {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 48px 0 64px;
+    animation: page-enter .6s var(--ease-out) both;
+}
+
+@@keyframes page-enter {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.glass-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--rim);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.03) inset,
+        0 24px 60px rgba(0,0,0,.45);
+    transition:
+        transform .35s var(--ease-out),
+        box-shadow .35s var(--ease-out),
+        border-color .35s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px) rotateX(1deg);
+    border-color: var(--rim-bright);
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.06) inset,
+        0 32px 80px rgba(0,0,0,.55),
+        0 0 60px rgba(79,142,255,.08);
+}
+
+
+footer {
+    position: relative;
+    z-index: 2;
+    background: rgba(5,8,18,.75);
+    border-top: 1px solid var(--rim);
+    backdrop-filter: blur(20px);
+    padding: 18px 0;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem;
+    color: var(--text-muted);
+}
+
+.footer-inner a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.footer-inner a:hover {
+    color: var(--plasma);
+    border-color: var(--plasma);
+}
+
+.footer-dot { opacity: .3; }
+
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb {
+    background: rgba(79,142,255,.3);
+    border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(79,142,255,.55); }
+
+
+::selection {
+    background: rgba(79,142,255,.35);
+    color: #fff;
+}
+
+
+:focus-visible {
+    outline: 2px solid rgba(79,142,255,.7);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+
+@@media (max-width: 768px) {
+    :root { --nav-h: 60px; }
+
+    main { padding: 28px 0 40px; }
+
+    footer { padding: 14px 0; }
+
+    .footer-inner { font-size: .78rem; }
+}
+
+@@media (max-width: 480px) {
+    :root { --nav-h: 56px; }
+
+    .navbar-brand { font-size: 1.1rem; }
+
+    .brand-icon { width: 32px; height: 32px; font-size: .95rem; }
+}
+    </style>
+</head>
+
+<body>
+
+    
+    <div class="bg-cosmos" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+    <div class="grid-mesh" aria-hidden="true"></div>
+
+    
+    <header>
+        <nav class="navbar navbar-expand-lg" id="mainNav">
+            <div class="container-fluid px-4">
+
+               
+                <a class="navbar-brand"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+                    <span class="brand-icon" aria-hidden="true">💰</span>
+                    <span class="brand-text">SmartExpense</span>
+                </a>
+
+              
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent"
+                        aria-controls="navbarContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+              
+                <div class="navbar-collapse collapse" id="navbarContent">
+
+                    
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                Privacy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Dashboard"
+                               asp-action="Dash">
+                                Dashboard
+                            </a>
+                        </li>
+                    </ul>
+
+                    
+                    <div class="nav-auth">
+                        <a class="btn-ghost-danger"
+                           asp-controller="User"
+                           asp-action="Logout">
+                            LogOut
+                        </a>
+                        <a class="btn-glass"
+                           asp-controller="User"
+                           asp-action="Register">
+                            Sign Up
+                        </a>
+                        <a class="btn-glass btn-plasma"
+                           asp-controller="User"
+                           asp-action="Login">
+                            Login →
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+    <div class="page-wrapper">
+        <div class="container">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span>© 2026 SmartExpenseTracker</span>
+                <span class="footer-dot">·</span>
+                <a asp-area=""
+                   asp-controller="Home"
+                   asp-action="Privacy">
+                    Privacy Policy
+                </a>
+                <span class="footer-dot">·</span>
+                <span>Built with precision</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        
+        const nav = document.getElementById('mainNav');
+        const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        (function() {
+            const orbs = document.querySelectorAll('.orb');
+            const depths = [0.012, 0.020, 0.015, 0.009];
+            document.addEventListener('mousemove', (e) => {
+                const cx = window.innerWidth  / 2;
+                const cy = window.innerHeight / 2;
+                const dx = e.clientX - cx;
+                const dy = e.clientY - cy;
+                orbs.forEach((orb, i) => {
+                    const d = depths[i] || 0.01;
+                    orb.style.transform =
+                        `translate(${dx * d}px, ${dy * d}px)`;
+                });
+            }, { passive: true });
+        })();
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

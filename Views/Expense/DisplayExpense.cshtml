@@ -1,0 +1,431 @@
+﻿<style>
+    .table-wrapper {
+        padding: 30px 0 60px;
+    }
+
+    .table-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+        .table-header h1 {
+            color: var(--text-primary);
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .table-header p {
+            color: var(--text-secondary);
+        }
+
+    .cosmic-table-container {
+        overflow-x: auto;
+        background: rgba(255,255,255,.04);
+        border: 1px solid var(--rim);
+        border-radius: 24px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 80px rgba(79,142,255,.08);
+    }
+
+    .cosmic-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .cosmic-table thead {
+            background: linear-gradient( 135deg, rgba(79,142,255,.15), rgba(176,108,255,.15) );
+        }
+
+        .cosmic-table th {
+            padding: 18px;
+            text-align: left;
+            color: var(--text-primary);
+            font-size: .9rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--rim);
+        }
+
+        .cosmic-table td {
+            padding: 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255,255,255,.05);
+        }
+
+        .cosmic-table tbody tr {
+            transition: .3s;
+        }
+
+            .cosmic-table tbody tr:hover {
+                background: rgba(255,255,255,.03);
+                transform: scale(1.002);
+            }
+
+    .amount {
+        color: #f87171;
+        font-weight: 700;
+    }
+
+    .category-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(239,68,68,.12);
+        border: 1px solid rgba(239,68,68,.25);
+        color: #fca5a5;
+        font-size: .8rem;
+    }
+
+    .action-btn {
+        text-decoration: none;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .edit-btn {
+        color: #60a5fa;
+    }
+
+        .edit-btn:hover {
+            color: #93c5fd;
+        }
+
+    .delete-btn {
+        color: #f87171;
+    }
+
+        .delete-btn:hover {
+            color: #fca5a5;
+        }
+
+    .pipe {
+        color: rgba(255,255,255,.25);
+        margin: 0 8px;
+    }
+
+    /* 🌌 COSMIC MODAL OVERLAY */
+    .cosmic-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 10, 25, 0.75);
+        backdrop-filter: blur(14px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    /* hidden state */
+    .hidden {
+        display: none;
+    }
+
+    /* 🧊 MODAL BOX */
+    /* 🌌 COSMIC DELETE MODAL SYSTEM (FULL BLOCK) */
+
+    .cosmic-modal {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at top, rgba(255, 0, 110, 0.15), transparent 60%), radial-gradient(circle at bottom, rgba(255, 200, 0, 0.08), transparent 60%), rgba(5, 10, 25, 0.85);
+        backdrop-filter: blur(18px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 16px;
+    }
+
+    /* hidden state */
+    .hidden {
+        display: none;
+    }
+
+    /* 🧊 MODAL BOX */
+    .cosmic-modal-box {
+        width: 420px;
+        max-width: 420px;
+        padding: 28px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 60px rgba(120,90,255,0.25);
+        text-align: center;
+        color: var(--text-primary);
+        animation: popIn .25s ease-out;
+    }
+
+    /* ⚠ ICON (COSMIC ENERGY CORE) */
+    .warning-icon {
+        font-size: 52px;
+        background: linear-gradient(135deg, #ffcc00, #ff3d00, #ff006e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 18px rgba(255, 80, 80, 0.55));
+        animation: pulseGlow 1.6s infinite ease-in-out;
+    }
+
+    /* 🚨 TITLE */
+    .cosmic-modal-box h2 {
+        margin: 10px 0;
+        font-size: 1.6rem;
+        color: #fff;
+    }
+
+    /* 📜 TEXT */
+    .cosmic-modal-box p {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    /* ☢ DANGER TEXT (COSMIC RADIATION STYLE) */
+    .danger-text {
+        background: linear-gradient(90deg, #ffcc00, #ff4d4d, #ff00aa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        text-shadow: 0 0 12px rgba(255, 80, 80, 0.25);
+    }
+
+    /* 🎯 BUTTON LAYOUT */
+    .modal-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    /* 🔘 BUTTON BASE */
+    .btn-cancel,
+    .btn-delete {
+        flex: 1;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        transition: .25s;
+    }
+
+    /* ❌ CANCEL */
+    .btn-cancel {
+        background: rgba(255,255,255,0.08);
+        color: var(--text-primary);
+    }
+
+        .btn-cancel:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+    /* ☢ DELETE (COSMIC HAZARD CORE) */
+    .btn-delete {
+        background: linear-gradient(135deg, #ff2d55, #ff3d00, #ff006e);
+        color: white;
+        font-weight: 800;
+        box-shadow: 0 0 18px rgba(255, 45, 85, 0.35), 0 0 40px rgba(255, 0, 110, 0.25), inset 0 0 10px rgba(255,255,255,0.08);
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 45, 85, 0.6), 0 0 60px rgba(255, 0, 110, 0.4), 0 0 90px rgba(255, 200, 0, 0.15);
+        }
+
+    /* ✨ POP ANIMATION */
+    @@keyframes popIn {
+        from {
+            transform: scale(0.85);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* ⚡ WARNING PULSE */
+    @@keyframes pulseGlow {
+        0% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(255,80,80,0.3));
+        }
+
+        50% {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 25px rgba(255,0,110,0.6));
+        }
+
+        100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(255,80,80,0.3));
+        }
+    }
+
+    @@media (max-width:768px) {
+
+        .table-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .cosmic-table th,
+        .cosmic-table td {
+            padding: 14px;
+            font-size: .85rem;
+        }
+
+        .action-btn {
+            display: block;
+            margin: 4px 0;
+        }
+
+        .pipe {
+            display: none;
+        }
+
+        .cosmic-modal-box {
+            padding: 18px;
+            border-radius: 18px;
+        }
+
+        .warning-icon {
+            font-size: 44px;
+        }
+
+        .btn-cancel,
+        .btn-delete {
+            padding: 9px 12px;
+            font-size: 0.9rem;
+        }
+    }
+
+</style>
+
+@model List<SmartExpenseTracker.Models.ExpenseModel>
+
+<div class="table-wrapper">
+
+    <div class="table-header">
+        <h1>💸 Expense Records</h1>
+        <p>Manage and track all your expense entries.</p>
+    </div>
+
+    <div class="cosmic-table-container">
+
+        <table class="cosmic-table">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var exp in Model)
+                {
+                    <tr>
+
+                        <td>@exp.ExpenseId</td>
+
+                        <td class="amount">
+                            Rs. @exp.Amount.ToString("0.##")
+                        </td>
+
+                        <td>
+                            <span class="category-badge">
+                                @exp.Category
+                            </span>
+                        </td>
+
+                        <td>@exp.Description</td>
+
+                        <td>
+                            @exp.Date.ToString("yyyy-MM-dd")
+                        </td>
+
+                        <td>
+
+                            <a asp-controller="Expense"
+                                   asp-action="EditExpense"
+                                   asp-route-id="@exp.ExpenseId"
+                                   class="action-btn edit-btn">
+                                ✏ Edit
+                            </a>
+
+                            <span class="pipe">|</span>
+
+                            <a href="javascript:void(0);"
+                                   class="action-btn delete-btn"
+                                   onclick="openDeleteModal(@exp.ExpenseId)">
+                                🗑 Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div id="cosmicDeleteModal" class="cosmic-modal hidden">
+
+    <div class="cosmic-modal-box">
+
+        <div class="warning-icon">⚠</div>
+
+        <h2>Confirm Deletion</h2>
+
+        <p>
+            This record will be permanently removed from your expense timeline.
+            <br />
+            <span class="danger-text">This action cannot be undone.</span>
+        </p>
+
+        <form id="deleteForm" method="post">
+            <input type="hidden" id="deleteIncomeId" name="id" />
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closeDeleteModal()">
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn-delete">
+                    Confirm Delete
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    function openDeleteModal(id) {
+        document.getElementById("deleteIncomeId").value = id;
+        document.getElementById("deleteForm").action = '/Expense/DeleteExpense/' + id;
+        document.getElementById("cosmicDeleteModal").classList.remove("hidden");
+    }
+
+    function closeDeleteModal() {
+        document.getElementById("cosmicDeleteModal").classList.add("hidden");
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById("cosmicDeleteModal");
+        if (event.target === modal) {
+            closeDeleteModal();
+        }
+    }
+</script>

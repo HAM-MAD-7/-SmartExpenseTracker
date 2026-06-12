@@ -188,3 +188,4 @@ C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Release\net10.0\SmartExpenseTracker.pdb
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Release\net10.0\SmartExpenseTracker.genruntimeconfig.cache
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Release\net10.0\ref\SmartExpenseTracker.dll
+C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\bin\Release\net10.0\dotnet-tools.json

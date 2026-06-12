@@ -5,7 +5,7 @@
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE7YAiHQoh0uwTsiG5h4ZGwAAAAACAAAAAAAQZgAAAAEAACAAAAAp3sjbeq0uCnkXLeEik7NrM8LYapfP8j2chebo9Fi0vAAAAAAOgAAAAAIAACAAAADaqElCsdPrnvmlBR2NnWBuIokCmsE1PQ03iPGBKeneziAAAACheYmvwFzeXDFyOXMd62nXJkiQzN0jijz1ddsKNm8f/EAAAAD6UKiH2I5TaqOHcQi6GC7GfUZd2pgSoX1c//FezdzScUyuQ3VruYQlAEXHuBaPrOhQEIYZV/TAFSzJhHNmKfTN</EncryptedPassword>
     <_PublishTargetUrl>ftp://site73874.siteasp.net/wwwroot</_PublishTargetUrl>
-    <History>True|2026-06-12T08:22:47.7806971Z||;</History>
+    <History>False|2026-06-12T11:25:18.5841838Z||;False|2026-06-12T16:11:44.9493762+05:00||;True|2026-06-12T13:22:47.7806971+05:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -17,6 +17,9 @@
     </File>
     <File Include="BCrypt-Net-Next.dll">
       <publishTime>05/11/2026 16:04:00</publishTime>
+    </File>
+    <File Include="dotnet-tools.json">
+      <publishTime>06/12/2026 16:21:55</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
       <publishTime>10/29/2024 14:57:06</publishTime>
@@ -34,16 +37,16 @@
       <publishTime>08/18/2025 03:09:22</publishTime>
     </File>
     <File Include="SmartExpenseTracker.deps.json">
-      <publishTime>06/12/2026 13:08:33</publishTime>
+      <publishTime>06/12/2026 16:24:43</publishTime>
     </File>
     <File Include="SmartExpenseTracker.dll">
       <publishTime>06/12/2026 13:08:27</publishTime>
     </File>
     <File Include="SmartExpenseTracker.exe">
-      <publishTime>06/12/2026 13:08:27</publishTime>
+      <publishTime>06/12/2026 16:24:38</publishTime>
     </File>
     <File Include="SmartExpenseTracker.pdb">
-      <publishTime>06/12/2026 13:08:27</publishTime>
+      <publishTime>06/12/2026 16:24:38</publishTime>
     </File>
     <File Include="SmartExpenseTracker.runtimeconfig.json">
       <publishTime>06/12/2026 13:08:28</publishTime>
@@ -52,7 +55,7 @@
       <publishTime>06/12/2026 13:08:36</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>06/12/2026 13:08:37</publishTime>
+      <publishTime>06/12/2026 16:24:43</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>06/08/2026 18:58:13</publishTime>

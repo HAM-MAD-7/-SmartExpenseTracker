@@ -187,3 +187,4 @@ C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Debug\net10.0\SmartExp.C1EA9F77.Up2Date
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Debug\net10.0\compressed\ns7z7ad0de-{0}-o6qmz1xomo-o6qmz1xomo.gz
 C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\bin\Debug\net10.0\BCrypt-Net-Next.dll
+C:\Users\User\source\repos\Projects\SmartExpenseTracker\SmartExpenseTracker\obj\Debug\net10.0\SmartExpenseTracker.sourcelink.json

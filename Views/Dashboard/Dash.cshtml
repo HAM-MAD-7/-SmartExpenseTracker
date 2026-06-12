@@ -1,337 +1,174 @@
 ﻿<style>
     .dashboard-wrapper {
-        padding: 30px 0 60px;
+        padding: 25px 0 50px;
     }
 
     /* HERO */
 
     .dashboard-hero {
-        position: relative;
-        overflow: hidden;
-        padding: 60px 40px;
-        border-radius: var(--radius-xl);
-        background: rgba(255,255,255,.04);
-        border: 1px solid var(--rim);
-        backdrop-filter: blur(20px);
-        box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 80px rgba(79,142,255,.08);
+        background: #111827;
+        border: 1px solid #2d3748;
+        border-radius: 16px;
+        padding: 40px 25px;
         text-align: center;
     }
 
-        .dashboard-hero::before {
-            content: '';
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            top: -120px;
-            right: -100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(79,142,255,.35), transparent 70%);
-            filter: blur(50px);
-        }
-
-        .dashboard-hero::after {
-            content: '';
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            bottom: -100px;
-            left: -80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(176,108,255,.35), transparent 70%);
-            filter: blur(50px);
-        }
-
     .dashboard-badge {
         display: inline-block;
-        padding: 8px 16px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.06);
-        border: 1px solid var(--rim-bright);
-        color: var(--text-secondary);
-        margin-bottom: 18px;
+        padding: 8px 14px;
+        background: #1f2937;
+        border: 1px solid #374151;
+        border-radius: 20px;
+        color: #cbd5e1;
+        font-size: .9rem;
+        margin-bottom: 15px;
     }
 
     .dashboard-title {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        margin-bottom: 12px;
+        font-size: 2.3rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 10px;
     }
 
         .dashboard-title span {
-            background: linear-gradient( 90deg, var(--plasma), var(--aurora) );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #60a5fa;
         }
 
     .dashboard-desc {
-        color: var(--text-secondary);
-        font-size: 1.05rem;
+        color: #cbd5e1;
     }
 
+    /* ACTION CARDS */
+
+    .manage-income-card,
+    .manage-expense-card {
+        margin-top: 25px;
+        background: #111827;
+        border: 1px solid #2d3748;
+        border-radius: 14px;
+        padding: 25px;
+        text-align: center;
+    }
+
+        .manage-income-card h1,
+        .manage-expense-card h1 {
+            color: #f8fafc;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+        }
+
+    /* BUTTONS */
+
     .dashboard-actions {
-        margin: 30px 0;
         display: flex;
         justify-content: center;
-        gap: 18px;
+        gap: 12px;
         flex-wrap: wrap;
     }
 
     .action-btn {
-        padding: 14px 28px;
-        border-radius: 16px;
         text-decoration: none;
-        font-weight: 700;
         color: white;
-        transition: all .35s ease;
-        border: 1px solid rgba(255,255,255,.15);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        font-weight: 600;
+        padding: 12px 22px;
+        border-radius: 10px;
         display: inline-block;
     }
 
     .add-btn {
-        background: linear-gradient(135deg, #10b981, #059669);
-        box-shadow: 0 10px 30px rgba(16,185,129,.25);
+        background: #16a34a;
     }
-
-        .add-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(16,185,129,.45);
-        }
 
     .view-btn {
-        background: linear-gradient(135deg, var(--plasma), var(--aurora));
-        box-shadow: 0 10px 30px rgba(79,142,255,.25);
+        background: #2563eb;
     }
-
-        .view-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(79,142,255,.45);
-        }
 
     .expense-add-btn {
-        background: linear-gradient(135deg, #f59e0b, #ef4444);
-        box-shadow: 0 10px 30px rgba(239,68,68,.25);
+        background: #f59e0b;
     }
-
-        .expense-add-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(239,68,68,.45), 0 0 60px rgba(245,158,11,.25);
-        }
 
     .expense-view-btn {
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        box-shadow: 0 10px 30px rgba(239,68,68,.30);
+        background: #dc2626;
     }
 
-        .expense-view-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(239,68,68,.50), 0 0 60px rgba(239,68,68,.25);
-        }
-
-    /* MANAGE CARDS */
-
-    .manage-income-card,
-    .manage-expense-card {
-        margin: 30px auto;
-        max-width: 750px;
-        padding: 32px;
-        text-align: center;
-        background: rgba(255,255,255,.04);
-        border: 1px solid var(--rim);
-        border-radius: var(--radius-lg);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        box-shadow: 0 20px 50px rgba(0,0,0,.35);
-        transition: all .35s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-        /* Glow effects */
-        .manage-income-card::before,
-        .manage-expense-card::before {
-            content: '';
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            top: -110px;
-            right: -90px;
-            border-radius: 50%;
-            filter: blur(55px);
-            opacity: .35;
-        }
-
-        .manage-income-card::before {
-            background: radial-gradient(circle, rgba(16,185,129,.55), transparent 70%);
-        }
-
-        .manage-expense-card::before {
-            background: radial-gradient(circle, rgba(239,68,68,.55), transparent 70%);
-        }
-
-        /* Hover animation */
-        .manage-income-card:hover,
-        .manage-expense-card:hover {
-            transform: translateY(-8px);
-        }
-
-        /* Different glow on hover */
-        .manage-income-card:hover {
-            box-shadow: 0 28px 65px rgba(0,0,0,.45), 0 0 70px rgba(16,185,129,.25);
-        }
-
-        .manage-expense-card:hover {
-            box-shadow: 0 28px 65px rgba(0,0,0,.45), 0 0 70px rgba(239,68,68,.25);
-        }
-
-        /* Titles */
-        .manage-income-card h1,
-        .manage-expense-card h1 {
-            position: relative;
-            z-index: 1;
-            color: var(--text-primary);
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 22px;
-        }
-
-        /* Keep buttons above glow */
-        .manage-income-card .dashboard-actions,
-        .manage-expense-card .dashboard-actions {
-            position: relative;
-            z-index: 1;
-            margin: 0;
-        }
-
-    /* CARDS */
+    /* STATS */
 
     .dashboard-grid {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+        margin-top: 25px;
+        display: grid;
+        gap: 15px;
     }
 
     .dashboard-card {
-        width: 100%;
-        background: rgba(255,255,255,.04);
-        border: 1px solid var(--rim);
-        border-radius: var(--radius-lg);
-        padding: 28px;
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        transition: all .35s ease;
-        box-shadow: 0 20px 50px rgba(0,0,0,.35);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        background: #111827;
+        border: 1px solid #2d3748;
+        border-radius: 14px;
+        padding: 22px;
     }
 
-        .dashboard-card:hover {
-            transform: translateY(-6px);
-        }
-
         .dashboard-card h3 {
-            color: var(--text-secondary);
+            color: #cbd5e1;
             font-size: 1rem;
-            margin: 0;
+            margin-bottom: 8px;
         }
 
         .dashboard-card h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--text-primary);
+            color: #f8fafc;
+            font-size: 1.8rem;
+            font-weight: 700;
             margin: 0;
         }
 
-    /* Income */
+    /* Color Indicators */
+
     .income {
-        border-color: rgba(16,185,129,.25);
+        border-left: 4px solid #16a34a;
     }
 
-        .income:hover {
-            box-shadow: 0 25px 60px rgba(0,0,0,.5), 0 0 60px rgba(16,185,129,.18);
-        }
-
-    /* Expense */
     .expense {
-        border-color: rgba(239,68,68,.25);
+        border-left: 4px solid #dc2626;
     }
 
-        .expense:hover {
-            box-shadow: 0 25px 60px rgba(0,0,0,.5), 0 0 60px rgba(239,68,68,.18);
-        }
-
-    /* Balance */
     .balance {
-        border-color: rgba(79,142,255,.25);
+        border-left: 4px solid #2563eb;
     }
 
-        .balance:hover {
-            box-shadow: 0 25px 60px rgba(0,0,0,.5), 0 0 60px rgba(79,142,255,.18);
-        }
+    /* MOBILE */
 
-    /* Mobile */
-    @@media (max-width:768px) {
-
-        .dashboard-card {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 24px;
-        }
-
-            .dashboard-card h2 {
-                font-size: 1.7rem;
-            }
+    @@media (max-width: 768px) {
 
         .dashboard-title {
-            font-size: 2rem;
-        }
-        .manage-income-card,
-        .manage-expense-card {
-            padding: 25px 18px;
+            font-size: 1.9rem;
         }
 
-            .manage-income-card h1,
-            .manage-expense-card h1 {
-                font-size: 1.6rem;
-            }
         .dashboard-hero {
-            padding: 40px 20px;
-        }
-
-        .dashboard-badge {
-            font-size: .85rem;
-        }
-
-        .dashboard-desc {
-            font-size: .95rem;
+            padding: 30px 18px;
         }
 
         .dashboard-actions {
             flex-direction: column;
             align-items: center;
-            gap: 12px;
         }
 
         .action-btn {
             width: 100%;
-            max-width: 250px;
-            text-align: center;
-        }
-
-        .dashboard-card {
-            align-items: center;
+            max-width: 260px;
             text-align: center;
         }
 
         .manage-income-card h1,
         .manage-expense-card h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
+
+        .dashboard-card {
+            text-align: center;
+        }
+
+            .dashboard-card h2 {
+                font-size: 1.5rem;
+            }
     }
 </style>
 

@@ -1,32 +1,31 @@
 ﻿<style>
     .table-wrapper {
-        padding: 30px 0 60px;
+        padding: 24px 0 50px;
     }
 
     .table-header {
         text-align: center;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
         .table-header h1 {
             color: var(--text-primary);
-            font-size: 2.4rem;
+            font-size: 2.1rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .table-header p {
             color: var(--text-secondary);
         }
 
+    /* Table */
     .cosmic-table-container {
         overflow-x: auto;
-        background: rgba(255,255,255,.04);
+        background: rgba(255,255,255,.03);
         border: 1px solid var(--rim);
-        border-radius: 24px;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 80px rgba(79,142,255,.08);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
     }
 
     .cosmic-table {
@@ -35,11 +34,11 @@
     }
 
         .cosmic-table thead {
-            background: linear-gradient( 135deg, rgba(79,142,255,.15), rgba(176,108,255,.15) );
+            background: rgba(239,68,68,.08);
         }
 
         .cosmic-table th {
-            padding: 18px;
+            padding: 16px;
             text-align: left;
             color: var(--text-primary);
             font-size: .9rem;
@@ -48,39 +47,41 @@
         }
 
         .cosmic-table td {
-            padding: 18px;
+            padding: 16px;
             color: var(--text-secondary);
             border-bottom: 1px solid rgba(255,255,255,.05);
         }
 
         .cosmic-table tbody tr {
-            transition: .3s;
+            transition: .25s;
         }
 
             .cosmic-table tbody tr:hover {
-                background: rgba(255,255,255,.03);
-                transform: scale(1.002);
+                background: rgba(255,255,255,.025);
             }
 
+    /* Amount */
     .amount {
         color: #f87171;
         font-weight: 700;
     }
 
+    /* Category */
     .category-badge {
         display: inline-block;
-        padding: 6px 12px;
+        padding: 5px 10px;
         border-radius: 999px;
         background: rgba(239,68,68,.12);
-        border: 1px solid rgba(239,68,68,.25);
+        border: 1px solid rgba(239,68,68,.2);
         color: #fca5a5;
         font-size: .8rem;
     }
 
+    /* Actions */
     .action-btn {
         text-decoration: none;
         font-weight: 600;
-        transition: .3s;
+        transition: .25s;
     }
 
     .edit-btn {
@@ -100,177 +101,104 @@
         }
 
     .pipe {
-        color: rgba(255,255,255,.25);
         margin: 0 8px;
+        color: rgba(255,255,255,.2);
     }
 
-    /* 🌌 COSMIC MODAL OVERLAY */
+    /* Modal */
     .cosmic-modal {
         position: fixed;
         inset: 0;
-        background: rgba(5, 10, 25, 0.75);
-        backdrop-filter: blur(14px);
+        background: rgba(0,0,0,.65);
+        backdrop-filter: blur(8px);
         display: flex;
-        align-items: center;
         justify-content: center;
-        z-index: 9999;
-    }
-
-    /* hidden state */
-    .hidden {
-        display: none;
-    }
-
-    /* 🧊 MODAL BOX */
-    /* 🌌 COSMIC DELETE MODAL SYSTEM (FULL BLOCK) */
-
-    .cosmic-modal {
-        position: fixed;
-        inset: 0;
-        background: radial-gradient(circle at top, rgba(255, 0, 110, 0.15), transparent 60%), radial-gradient(circle at bottom, rgba(255, 200, 0, 0.08), transparent 60%), rgba(5, 10, 25, 0.85);
-        backdrop-filter: blur(18px);
-        display: flex;
         align-items: center;
-        justify-content: center;
-        z-index: 9999;
         padding: 16px;
+        z-index: 9999;
     }
 
-    /* hidden state */
     .hidden {
         display: none;
     }
 
-    /* 🧊 MODAL BOX */
     .cosmic-modal-box {
-        width: 420px;
-        max-width: 420px;
-        padding: 28px;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.15);
-        box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 60px rgba(120,90,255,0.25);
+        width: 100%;
+        max-width: 400px;
+        padding: 24px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid var(--rim);
         text-align: center;
-        color: var(--text-primary);
-        animation: popIn .25s ease-out;
+        backdrop-filter: blur(15px);
     }
 
-    /* ⚠ ICON (COSMIC ENERGY CORE) */
     .warning-icon {
-        font-size: 52px;
-        background: linear-gradient(135deg, #ffcc00, #ff3d00, #ff006e);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 0 18px rgba(255, 80, 80, 0.55));
-        animation: pulseGlow 1.6s infinite ease-in-out;
+        font-size: 42px;
+        margin-bottom: 10px;
     }
 
-    /* 🚨 TITLE */
     .cosmic-modal-box h2 {
-        margin: 10px 0;
-        font-size: 1.6rem;
-        color: #fff;
+        color: var(--text-primary);
+        margin-bottom: 10px;
     }
 
-    /* 📜 TEXT */
     .cosmic-modal-box p {
-        font-size: 0.95rem;
         color: var(--text-secondary);
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
-    /* ☢ DANGER TEXT (COSMIC RADIATION STYLE) */
     .danger-text {
-        background: linear-gradient(90deg, #ffcc00, #ff4d4d, #ff00aa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-        text-shadow: 0 0 12px rgba(255, 80, 80, 0.25);
+        color: #f87171;
+        font-weight: 700;
     }
 
-    /* 🎯 BUTTON LAYOUT */
+    /* Buttons */
     .modal-actions {
-        margin-top: 20px;
+        margin-top: 18px;
         display: flex;
-        justify-content: space-between;
-        gap: 12px;
+        gap: 10px;
     }
 
-    /* 🔘 BUTTON BASE */
     .btn-cancel,
     .btn-delete {
         flex: 1;
-        padding: 10px 14px;
-        border-radius: 12px;
         border: none;
+        border-radius: 12px;
+        padding: 10px;
         cursor: pointer;
         font-weight: 700;
         transition: .25s;
     }
 
-    /* ❌ CANCEL */
     .btn-cancel {
-        background: rgba(255,255,255,0.08);
+        background: rgba(255,255,255,.08);
         color: var(--text-primary);
     }
 
         .btn-cancel:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,.12);
         }
 
-    /* ☢ DELETE (COSMIC HAZARD CORE) */
     .btn-delete {
-        background: linear-gradient(135deg, #ff2d55, #ff3d00, #ff006e);
-        color: white;
-        font-weight: 800;
-        box-shadow: 0 0 18px rgba(255, 45, 85, 0.35), 0 0 40px rgba(255, 0, 110, 0.25), inset 0 0 10px rgba(255,255,255,0.08);
+        background: linear-gradient(135deg,#ef4444,#dc2626);
+        color: #fff;
     }
 
         .btn-delete:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 45, 85, 0.6), 0 0 60px rgba(255, 0, 110, 0.4), 0 0 90px rgba(255, 200, 0, 0.15);
+            transform: translateY(-2px);
         }
 
-    /* ✨ POP ANIMATION */
-    @@keyframes popIn {
-        from {
-            transform: scale(0.85);
-            opacity: 0;
-        }
-
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-    /* ⚡ WARNING PULSE */
-    @@keyframes pulseGlow {
-        0% {
-            transform: scale(1);
-            filter: drop-shadow(0 0 10px rgba(255,80,80,0.3));
-        }
-
-        50% {
-            transform: scale(1.08);
-            filter: drop-shadow(0 0 25px rgba(255,0,110,0.6));
-        }
-
-        100% {
-            transform: scale(1);
-            filter: drop-shadow(0 0 10px rgba(255,80,80,0.3));
-        }
-    }
-
+    /* Mobile */
     @@media (max-width:768px) {
 
         .table-header h1 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
         }
 
         .cosmic-table th,
         .cosmic-table td {
-            padding: 14px;
+            padding: 13px;
             font-size: .85rem;
         }
 
@@ -283,22 +211,10 @@
             display: none;
         }
 
-        .cosmic-modal-box {
-            padding: 18px;
-            border-radius: 18px;
-        }
-
-        .warning-icon {
-            font-size: 44px;
-        }
-
-        .btn-cancel,
-        .btn-delete {
-            padding: 9px 12px;
-            font-size: 0.9rem;
+        .modal-actions {
+            flex-direction: column;
         }
     }
-
 </style>
 
 @model List<SmartExpenseTracker.Models.ExpenseModel>

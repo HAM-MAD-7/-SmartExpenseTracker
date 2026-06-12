@@ -6,174 +6,133 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 40px 16px;
+        padding: 32px 16px;
     }
 
     .income-card {
         width: 100%;
-        max-width: 650px;
-        background: rgba(255,255,255,.04);
+        max-width: 620px;
+        padding: 32px;
+        border-radius: 24px;
+        background: rgba(255,255,255,.03);
         border: 1px solid var(--rim);
-        border-radius: 28px;
-        padding: 40px;
-        backdrop-filter: blur(22px);
-        -webkit-backdrop-filter: blur(22px);
-        box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 80px rgba(79,142,255,.08);
-        position: relative;
-        overflow: hidden;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 12px 30px rgba(0,0,0,.25);
     }
 
-        .income-card::before {
-            content: '';
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            top: -120px;
-            right: -100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(79,142,255,.35), transparent 70%);
-            filter: blur(50px);
-        }
-
-        .income-card::after {
-            content: '';
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            bottom: -100px;
-            left: -80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(176,108,255,.30), transparent 70%);
-            filter: blur(50px);
-        }
-
     .income-badge {
-        width: 65px;
-        height: 65px;
-        margin: auto;
-        margin-bottom: 20px;
-        border-radius: 18px;
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        border-radius: 16px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 28px;
-        background: linear-gradient( 135deg, var(--plasma), var(--neon));
-        box-shadow: 0 0 30px rgba(79,142,255,.45);
+        justify-content: center;
+        font-size: 26px;
+        color: #fff;
+        background: linear-gradient(135deg,#f59e0b,#ef4444);
+        box-shadow: 0 0 18px rgba(239,68,68,.25);
     }
 
     .income-title {
         text-align: center;
-        color: var(--text-primary);
-        font-size: 2rem;
+        font-size: 1.9rem;
         font-weight: 800;
-        margin-bottom: 10px;
-    }
-
-    .income-field select option {
-        background: #111827;
         color: var(--text-primary);
-    }
-
-    .income-field select {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
+        margin-bottom: 8px;
     }
 
     .income-sub {
         text-align: center;
         color: var(--text-secondary);
-        margin-bottom: 30px;
+        margin-bottom: 24px;
     }
 
     .income-field {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
         .income-field label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--text-secondary);
             font-size: .85rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: .08em;
         }
 
         .income-field input,
         .income-field select,
         .income-field textarea {
             width: 100%;
-            background: rgba(255,255,255,.05);
+            padding: 13px 14px;
+            border-radius: 12px;
             border: 1px solid var(--rim-bright);
-            border-radius: 14px;
-            padding: 14px 16px;
+            background: rgba(255,255,255,.04);
             color: var(--text-primary);
             outline: none;
-            transition: .3s;
+            transition: .25s;
         }
 
+        .income-field select {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+            .income-field select option {
+                background: #111827;
+                color: #fff;
+            }
+
         .income-field textarea {
+            min-height: 110px;
             resize: vertical;
-            min-height: 120px;
         }
 
             .income-field input:focus,
             .income-field select:focus,
             .income-field textarea:focus {
-                border-color: rgba(79,142,255,.6);
-                box-shadow: 0 0 0 4px rgba(79,142,255,.10), 0 0 25px rgba(79,142,255,.15);
-                background: rgba(79,142,255,.06);
+                border-color: rgba(239,68,68,.45);
+                box-shadow: 0 0 0 3px rgba(239,68,68,.08);
             }
 
     .income-btn {
         width: 100%;
-        padding: 15px;
         border: none;
-        border-radius: 16px;
-        cursor: pointer;
-        color: white;
-        font-size: 1rem;
+        padding: 14px;
+        border-radius: 14px;
         font-weight: 700;
-        background: linear-gradient( 135deg, var(--plasma), var(--neon));
-        box-shadow: 0 10px 30px rgba(79,142,255,.35);
-        transition: .3s;
+        color: #fff;
+        cursor: pointer;
+        background: linear-gradient(135deg,#f59e0b,#ef4444);
+        box-shadow: 0 8px 24px rgba(239,68,68,.25);
+        transition: .25s;
     }
 
         .income-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 45px rgba(79,142,255,.45), 0 0 60px rgba(176,108,255,.18);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(239,68,68,.35);
         }
 
     .field-validation-error {
-        color: #ff6b6b;
-        font-size: .85rem;
         display: block;
-        margin-top: 6px;
-        font-weight: 600;
-        text-shadow: 0 0 12px rgba(255,107,107,.4);
+        margin-top: 5px;
+        color: #ff6b6b;
+        font-size: .82rem;
     }
 
-    @@media (max-width:768px) {
-
+    @@media(max-width:768px) {
         .income-card {
-            padding: 28px;
+            padding: 24px;
         }
 
         .income-title {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
         }
 
         .income-badge {
-            width: 55px;
-            height: 55px;
-            font-size: 24px;
-        }
-
-        .income-field input,
-        .income-field select,
-        .income-field textarea {
-            padding: 12px 14px;
+            width: 52px;
+            height: 52px;
+            font-size: 22px;
         }
     }
 </style>
